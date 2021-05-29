@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="desafio5">
+       <div>
+           <p>Valor Atual: {{valor}}</p>
+           <button @click="aumentar5">Somar 5</button>
+           <button @click="aumentar1">Somar 1</button>
+           <p> Resultado : {{resultado}}</p>
+       </div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</script>
+<script >
+    let app5 = new Vue({
+        el:'#desafio5',
+        data :{
+            valor : 0,
+        },
+        watch:{
+            resultado(){
+                setTimeout(() => {
+                    this.valor = 0
+                }, 2000);
+
+            }
+        },
+        computed:{
+            resultado() {
+
+                return this.valor != 37 ? 'Valor Diferente' : 'Valor Igual'
+            }
+        },
+        methods:{
+            aumentar5(){
+                this.valor += 5
+            },
+            aumentar1(){
+                this.valor ++
+            }
+        }
+    })
+</script>
+</html>

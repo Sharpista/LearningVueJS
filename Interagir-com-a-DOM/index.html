@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="desafio">
+        <div>
+            <button @click="exibirAlerta">Clica</button>
+        </div>
+
+        <div>
+            <input type="text" @keydown="pegarOqueFoiDigitado"/>
+            <p>{{valor}}</p>
+        </div>
+        <div>
+            <input type="text" @keydown.enter="soDigitarAoClicarEnter"/>
+            <p>{{valor}}</p>
+        </div>
+        <div>
+
+        </div>
+        <div>
+
+        </div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</script>
+<script>
+let app = new Vue({
+  el: "#desafio",
+  data: {
+    valor: "",
+  },
+  methods: {
+    exibirAlerta() {
+      alert("Voce clicou o botão");
+    },
+    pegarOqueFoiDigitado(e) {
+      this.valor = e.target.value;
+    },
+    soDigitarAoClicarEnter(e) {
+      this.valor = e.target.value;
+    },
+  },
+});
+</script>
+</html>

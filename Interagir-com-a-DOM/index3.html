@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="desafio3">
+      
+        <div>
+            <h2>Usando Two-Way-Bind</h2>
+
+            <p>{{titulo}}</p>
+            <input type="text" :value = "titulo" @input="mudarTitulo">
+        </div>
+
+        <div>
+            <h2>Usando apenas o V-model</h2>
+
+            <p>{{titulo}}</p>
+            <input type="text" v-model="titulo">
+        </div>
+        
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</script>
+<script>
+    let app3 = new Vue({
+  el: "#desafio3",
+  data: {
+    titulo: "Usando VueJS",
+  },
+  methods: {
+    mudarTitulo(e) {
+      this.titulo = e.target.value;
+    },
+  },
+});
+</script>
+</html>
