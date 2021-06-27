@@ -40,7 +40,7 @@
 					<Escolha v-model="escolha" />
 				</Rotulo>
 				<hr>
-				<button>Enviar</button>
+				<button @click.prevent="enviar">Enviar</button>
 			</form>
 			<div class="painel" v-else>
 				<div class="cabecalho">Resultado</div>
@@ -107,6 +107,11 @@ export default {
 			]
 		}
 	},
+	methods:{
+		enviar(){
+			this.enviado = true
+		}
+	}
 }
 </script>
 
