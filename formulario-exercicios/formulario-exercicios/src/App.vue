@@ -23,9 +23,9 @@
 					v-model="caracteristicas"> Intermitente</span>
 				</Rotulo>
 				<Rotulo nome="Qual produto?">
-					<span class="mr-4"><input type="radio" value="web"> Web</span>
-					<span class="mr-4"><input type="radio" value="mobile"> Mobile</span>
-					<span><input type="radio" value="outro"> Outro</span>
+					<span class="mr-4"><input type="radio" value="web" v-model="produto"> Web</span>
+					<span class="mr-4"><input type="radio" value="mobile" v-model="produto"> Mobile</span>
+					<span><input type="radio" value="outro" v-model="produto"> Outro</span>
 				</Rotulo>
 				<Rotulo nome="Prioridade">
 					<select name="" id="">
@@ -53,13 +53,15 @@
 					<span style="white-space: pre;">{{mensagem}}</span>
 				</Rotulo>
 				<Rotulo nome="Marque as Opções">
-					<span>???</span>
-				</Rotulo>
-				<Rotulo nome="Qual produto?">
 					<span>
 						<ul>
 							<li v-for="c in caracteristicas" :key="c">{{c}}</li>
 						</ul>
+					</span>
+				</Rotulo>
+				<Rotulo nome="Qual produto?">
+					<span>
+						{{produto}}
 					</span>
 				</Rotulo>
 				<Rotulo nome="Prioridade">
