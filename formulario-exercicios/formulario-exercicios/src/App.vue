@@ -23,9 +23,9 @@
 					v-model="caracteristicas"> Intermitente</span>
 				</Rotulo>
 				<Rotulo nome="Qual produto?">
-					<span class="mr-4"><input type="radio"> Web</span>
-					<span class="mr-4"><input type="radio"> Mobile</span>
-					<span><input type="radio"> Outro</span>
+					<span class="mr-4"><input type="radio" value="web"> Web</span>
+					<span class="mr-4"><input type="radio" value="mobile"> Mobile</span>
+					<span><input type="radio" value="outro"> Outro</span>
 				</Rotulo>
 				<Rotulo nome="Prioridade">
 					<select name="" id="">
@@ -88,6 +88,7 @@ export default {
 				idade:'',
 
 			},
+			produto: '',
 			mensagem:'',
 			caracteristicas : []
 		}
