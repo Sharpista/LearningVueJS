@@ -1,9 +1,9 @@
 <template>
-<div class="contador">
-    <span>{{contador}}</span>
-    <button @click="adicionar">+</button>
-    <button @click="subtrair">-</button>
-</div>
+    <div class="contador">
+        <span>{{contador}}</span>
+        <button @click="adicionar">+</button>
+        <button @click="subtrair">-</button>
+    </div>
 </template>
 
 <script>
