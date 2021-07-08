@@ -1,13 +1,24 @@
+/* eslint-disable */ 
 <template>
 	<div id="app" class="container-fluid">
 		<h1>Animações</h1>
+		<hr>
+		<b-button variant="primary" class="mb-4" @click="exibir = !exibir">Mostrar Mensagem</b-button>
+		<transition>
+			<b-alert variant="info" show v-if="exibir">{{msg}}</b-alert>
+		</transition>
 	</div>
 </template>
 
 <script>
 
 export default {
-
+data() {
+	return {
+		msg:'Uma mensagem de informação de usuário',
+		exibir:false
+	}
+},
 }
 </script>
 
