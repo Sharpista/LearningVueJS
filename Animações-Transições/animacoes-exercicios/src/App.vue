@@ -1,5 +1,10 @@
 /* eslint-disable no-console */
+/* eslint-disable no-console */
+/* eslint-disable no-console */
+/* eslint-disable no-console */
 /* eslint-disable */ 
+
+<!--Caso eu queira desabilitar classe css de transitions externas na minha transição usar :css="false" na transition-->
 <template>
 	<div id="app" class="container-fluid">
 		<h1>Animações</h1>
@@ -31,8 +36,11 @@
 			<b-alert variant="info" show v-show="exibir">{{msg}}</b-alert>
 		</transition>
 		<hr>
-		<b-button variant="danger" @click="exibir2 = !exibir2">Mostrar</b-button>
+		<b-button variant="danger" @click="exibir2 = !exibir2">Alternar</b-button>
 		<transition
+		
+			
+			
 			@before-enter="beforeEnter"
 			@enter="enter"
 			@after-enter="afterEnter"
@@ -56,17 +64,28 @@ data() {
 	return {
 		msg:'Uma mensagem de informação de usuário',
 		exibir:false,
-		exibir2:true,
-		tipoAnimacao:'fade'
+		exibir2:false,
+		tipoAnimacao:'fade',
+		larguraBase:0
 	}
 },
 methods: {
-	beforeEnter(e){
-		console.log('beforeEnter')
+	beforeEnter(el){
+		this.larguraBase = 0
+		el.style.width = `${this.larguraBase}px`
 	},
 	enter(el, done){
-		console.log('enter')
-		done()
+		
+		let rodada = 1
+		const temporizador = setInterval(() => {
+			const novaLargura = this.larguraBase + rodada * 10
+			el.style.width = `${novaLargura}px`
+			rodada ++
+			if(rodada > 30){
+				clearInterval(temporizador)
+				done()
+			}
+		},20)
 	},
 	afterEnter(el){
 		console.log('afterEnter')
@@ -76,11 +95,20 @@ methods: {
 	},
 
 	beforeLeave(el){
-		console.log('beforeLeave')
+		this.larguraBase = 300
+		el.style.width = `${this.larguraBase}px`
 	},
 	leave(el, done){
-		console.log('leave')
-		done()
+	let rodada = 1
+		const temporizador = setInterval(() => {
+			const novaLargura = this.larguraBase - rodada * 10
+			el.style.width = `${novaLargura}px`
+			rodada ++
+			if(rodada > 30){
+				clearInterval(temporizador)
+				done()
+			}
+		},20)
 	},
 	afterLeave(el){
 		console.log('afterLeave')
