@@ -10,6 +10,8 @@
 	<div id="app" class="container">
 	
 		<h1>HTTP com Axios</h1>
+		<b-alert show dismissible v-for="mensagem in mensagens" :key="mensagem.texto"
+		:variant="mensagem.tipo">{{mensagem.texto}}</b-alert>
 		<b-card>
 			<b-form-group label="Nome">
 				 <b-form-input type="text" size="lg" v-model="usuario.nome" placeholder="Informe o Nome">
@@ -55,6 +57,7 @@ export default {
 
 	data(){
 		return{
+			mensagens:[],
 			usuarios:[],
 			id:null,
 			usuario:{
@@ -82,18 +85,39 @@ export default {
 			const metodo = this.id ? 'patch' : 'post'
 			const finalUrl = this.id ? `/${this.id}.json` : '.json'
 			this.$http[metodo](`/usuarios${finalUrl}`, this.usuario)
-						.then(() => this.limparCampos)
-						this.obterUsuarios()
+						.then(() => {
+							this.limparCampos()
+							this.mensagens.push({
+								texto : 'Operação Realizada com sucesso !',
+								tipo: 'success'
+							})
+							this.obterUsuarios()
+						})
+						
 		},
 		excluir(id){
 			this.$http.delete(`/usuarios/${id}.json`)
-					.then(() => this.limparCampos)
-					this.obterUsuarios()
+					.then(() => {
+						this.limparCampos()
+						this.mensagens.push({
+							texto: 'Excluído com sucesso !',
+							tipo: 'success'
+						})
+						this.obterUsuarios()
+					})
+					.catch(err =>{
+						this.limparCampos()
+						this.mensagens.push({
+							texto: 'Problemas ao realizar a ação de excluir',
+							tipo: 'danger'
+						})
+					})
 		},
 		limparCampos(){
 			this.usuario.nome = ''
 			this.usuario.email = ''
 			this.id = null
+			this.mensagens = []
 		}
 	}
 }
