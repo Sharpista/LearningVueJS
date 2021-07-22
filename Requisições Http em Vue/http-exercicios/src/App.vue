@@ -2,8 +2,13 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 /* eslint-disable no-mixed-spaces-and-tabs */
 /* eslint-disable no-mixed-spaces-and-tabs */
+/* eslint-disable no-mixed-spaces-and-tabs */
+/* eslint-disable no-mixed-spaces-and-tabs */
+
 <template>
+
 	<div id="app" class="container">
+	
 		<h1>HTTP com Axios</h1>
 		<b-card>
 			<b-form-group label="Nome">
@@ -18,7 +23,18 @@
 			<b-button @click="salvar" size="lg" variant="primary">
 				Salvar
 			</b-button>
+			<b-button @click="obterUsuarios" size="lg" variant="secondary" class="ml-2">
+				Obter Usuários
+			</b-button>
 		</b-card>
+			<b-list-group>
+				<b-list-item v-for="(usuario,id) in usuarios" :key="id">
+					<strong>Nome: </strong> {{usuario.nome}} <br>
+					<strong>Email: </strong> {{usuario.email}} <br>
+					<strong>ID: </strong> {{id}} <br>
+				</b-list-item>
+				
+			</b-list-group>
 	</div>
 </template>
 
@@ -33,6 +49,7 @@ export default {
 
 	data(){
 		return{
+			usuarios:[],
 			usuario:{
 				nome:'',
 				email:''
@@ -41,7 +58,19 @@ export default {
 	},
 	methods:{
 		salvar(){
-			
+			this.$http.post('usuarios.json', this.usuario)
+					.then(resp =>{
+						this.limparCampos()
+					})
+		},
+		obterUsuarios(){
+			this.$http.get('usuarios.json').then( resp =>{
+						this.usuarios = resp.data
+					})
+		},
+		limparCampos(){
+			this.usuario.nome = ''
+			this.usuario.email = ''
 		}
 	}
 }
