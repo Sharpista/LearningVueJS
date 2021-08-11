@@ -1,8 +1,9 @@
 <template>
   <div class="usuario-detalhe">
       <h3>Usuário Detalhe</h3>
+      <!-- :to="`/usuario/${id}/editar`"-->
       <p><strong>Código: </strong>{{ id }}</p>
-      <router-link tag="button" primario :to="`/usuario/${id}/editar`" >
+      <router-link tag="button" primario :to="{name : 'editarUsuario', params:{id}}" >
         Editar
       </router-link>
   </div>
