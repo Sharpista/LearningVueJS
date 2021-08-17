@@ -12,6 +12,11 @@ import MenuAlt from './components/template/MenuAlt.vue'
 Vue.use(Router)
 
 export default new Router({
+    scrollBehavior(to){
+        if(to.hash){
+            return {selector : to.hash}
+        }
+    },
     routes: [{
         path:'/',
         //component : Inicio
