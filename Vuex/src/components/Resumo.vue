@@ -9,16 +9,23 @@
 </template>
 
 <script>
-export default {
-    computed: {
-        total() {
-            return this.$store.getters.valorTotal
+import { mapGetters } from 'vuex'
 
-        },
-        produtos(){
-            return this.$store.state.produtos
-        }
-    },
+export default {
+
+    computed: mapGetters({
+        total : 'valorTotal'
+    })
+//     computed: {
+//        total(){
+//            return this.$store.getters.valorTotal
+//        }
+//     },
+
+//    computed: mapGetters(['valorTotal'])
+
+
+
     
 }
 </script>
